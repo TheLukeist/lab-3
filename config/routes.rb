@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  root 'home#index'
-  get '/about', to: 'home#about'
-  get '/news', to: 'home#news'
-  get '/contact', to: 'home#contact'
-  post '/send_email', to: 'home#send_email'
-  get '/api/news', to: 'home#fetch_news'
+  root "home#index"
+  get "/about", to: "home#about"
+  get "/news", to: "home#news"
+  get "/contact", to: "home#contact"
+  post "/send_email", to: "home#send_email"
+  get "/api/news", to: "home#fetch_news"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

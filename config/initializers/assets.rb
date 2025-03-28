@@ -9,7 +9,7 @@ Rails.application.config.assets.paths << Rails.root.join("node_modules")
 Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap-icons/font")
 
 # Precompile additional assets.
-Rails.application.config.assets.precompile += %w( application.css )
+Rails.application.config.assets.precompile += %w[ application.css ]
 
 # Enable serving of static files from the `/public` folder by default since
 # Apache or NGINX already handles this.
