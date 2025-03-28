@@ -1,6 +1,6 @@
-/* Estilos para las tarjetas de noticias */
 .news-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease;
@@ -15,25 +15,24 @@
     width: 100%;
     height: 200px;
     object-fit: cover;
+    border-radius: 8px;
 }
 
 .news-card .card-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 1rem 1rem 0.5rem 1rem;
     color: #fff;
+    font-size: 1.2em;
+    margin-top: 15px;
+    font-weight: 500;
 }
 
 .news-card .source {
-    font-size: 0.9rem;
-    color: #b388ff;
-    margin: 0 1rem;
+    color: #A78BFA;
+    font-size: 0.9em;
 }
 
 .news-card .card-text {
-    font-size: 0.9rem;
-    color: #ccc;
-    margin: 0.5rem 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95em;
 }
 
 .news-card .btn {
@@ -48,7 +47,17 @@
     box-shadow: 0 5px 15px rgba(179, 136, 255, 0.4);
 }
 
-/* Estilos para los botones de categoría */
+.news-card .btn-primary {
+    background: linear-gradient(90deg, #7928CA, #FF0080) !important;
+    border: none !important;
+    transition: all 0.3s ease;
+}
+
+.news-card .btn-primary:hover {
+    background: linear-gradient(90deg, #FF0080, #7928CA) !important;
+    transform: translateY(-2px);
+}
+
 .category-filter {
     margin-bottom: 2rem;
 }
@@ -66,4 +75,54 @@
 .category-filter .btn:hover,
 .category-filter .btn.active {
     background: linear-gradient(135deg, #b388ff, #EC4899);
+}
+
+.gradient-btn {
+    background: linear-gradient(90deg, #7928CA, #FF0080) !important;
+    color: white !important;
+    border: none !important;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+    padding: 8px 15px;
+    border-radius: 6px;
+}
+
+.gradient-btn:hover {
+    background: linear-gradient(90deg, #FF0080, #7928CA) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    color: white !important;
+}
+
+.gradient-btn.active {
+    background: linear-gradient(90deg, #FF0080, #7928CA) !important;
+    font-weight: bold;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.pagination .page-item .page-link {
+    background: linear-gradient(90deg, #7928CA, #FF0080);
+    color: white;
+    border: none;
+    margin: 0 2px;
+    transition: all 0.3s ease;
+}
+
+.pagination .page-item .page-link:hover {
+    background: linear-gradient(90deg, #FF0080, #7928CA);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.pagination .page-item.active .page-link {
+    background: linear-gradient(90deg, #FF0080, #7928CA);
+    font-weight: bold;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.pagination .page-item.disabled .page-link {
+    background: #444;
+    color: #aaa;
 } 

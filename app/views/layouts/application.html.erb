@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" style="border:none; outline:none;">
+<html lang="es">
   <head>
     <title>Portfolio</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -9,49 +9,15 @@
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
     <%= stylesheet_link_tag "styles", media: "all", "data-turbolinks-track": "reload" %>
     <%= stylesheet_link_tag "fix", media: "all", "data-turbolinks-track": "reload" %>
+    <%= stylesheet_link_tag "news", media: "all", "data-turbolinks-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbolinks-track": "reload", defer: true %>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-      html, body, main, .container, .row, .col, div {
-        border: none !important;
-        outline: none !important;
-        box-shadow: none !important;
-      }
-      body {
-        overflow-x: hidden;
-        margin-bottom: 0 !important;
-      }
-      html, body {
-        min-height: 100% !important;
-        height: 100% !important;
-        background-color: #0a0a16 !important;
-      }
-      .hero {
-        margin-bottom: 0 !important;
-        border-bottom: none !important;
-      }
-      /* Eliminar cualquier línea inferior */
-      body::after, main::after, .hero::after, 
-      body::before, main::before, .hero::before {
-        display: none !important;
-        content: none !important;
-      }
-      /* Asegurar que bootstrap no agregue bordes */
-      .container-fluid, .container,
-      .row, .col, .col-md-4, .col-lg-4,
-      .card, .card-body {
-        border: none !important;
-        margin-bottom: 0 !important;
-        outline: none !important;
-        box-shadow: none !important;
-      }
-    </style>
   </head>
 
-  <body style="border:none; outline:none; margin-bottom:0; padding-bottom:0; background-color:#0a0a16;">
+  <body>
     <div class="page-container">
-      <%= render 'home/header' %>
+      <%= render "home/header" %>
       <div class="content">
         <% if notice %>
           <div class="flash notice"><%= notice %></div>
@@ -63,6 +29,7 @@
         
         <%= yield %>
       </div>
+      <%= render "home/footer" %>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

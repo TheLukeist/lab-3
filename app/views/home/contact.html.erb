@@ -15,10 +15,6 @@
             </a>
         </div>
 
-        <div class="copyright">
-            <p>© <%= Time.now.year %> Lucas Fuentes</p>
-        </div>
-
         <%= form_with(url: "/send_email", method: "post", class: "contact-form") do %>
             <div class="form-group">
                 <%= email_field_tag :email, nil, class: "form-control", placeholder: "Enter your email" %>
