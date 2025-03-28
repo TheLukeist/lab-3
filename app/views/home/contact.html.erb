@@ -1,0 +1,32 @@
+<section class="contact">
+    <h2 class="gradient-text">Contact</h2>
+    <div class="contact-section">
+        <p class="contact-text">If you want to contact me, I suggest you write to me on any of my platforms.</p>
+        
+        <div class="social-links">
+            <a href="https://github.com/TheLukeist" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="http://www.linkedin.com/in/lucas-benjamin-fuentes-alarcon-3aa969336" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="mailto:lbfuentes@miuandes.cl">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+
+        <div class="copyright">
+            <p>© <%= Time.now.year %> Lucas Fuentes</p>
+        </div>
+
+        <%= form_with(url: "/send_email", method: "post", class: "contact-form") do %>
+            <div class="form-group">
+                <%= email_field_tag :email, nil, class: "form-control", placeholder: "Enter your email" %>
+            </div>
+            <div class="form-group">
+                <%= text_area_tag :message, nil, class: "form-control", placeholder: "Your message", rows: 4 %>
+            </div>
+            <%= submit_tag "Send", class: "btn-send" %>
+        <% end %>
+    </div>
+</section> 

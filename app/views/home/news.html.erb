@@ -1,0 +1,140 @@
+<section class="news-section">
+    <h2 class="gradient-text">Latest News</h2>
+    <p class="text-center text-muted mb-4">The most recent news</p>
+
+    <div class="category-filter text-center mb-4">
+        <button class="btn gradient-btn active" data-category="technology">Technology</button>
+        <button class="btn gradient-btn" data-category="business">Business</button>
+        <button class="btn gradient-btn" data-category="science">Science</button>
+        <button class="btn gradient-btn" data-category="health">Health</button>
+        <button class="btn gradient-btn" data-category="sports">Sports</button>
+    </div>
+
+    <div class="container">
+        <div id="news-container" class="row g-4">
+            <!-- News cards will be dynamically inserted here -->
+        </div>
+        
+        <nav aria-label="News pagination" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <!-- Pagination will be dynamically inserted here -->
+            </ul>
+        </nav>
+    </div>
+</section>
+
+<style>
+    .gradient-btn {
+        background: linear-gradient(90deg, #7928CA, #FF0080) !important;
+        color: white !important;
+        border: none !important;
+        margin: 0 5px;
+        transition: all 0.3s ease;
+        padding: 8px 15px;
+        border-radius: 6px;
+    }
+    
+    .gradient-btn:hover {
+        background: linear-gradient(90deg, #FF0080, #7928CA) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        color: white !important;
+    }
+    
+    .gradient-btn.active {
+        background: linear-gradient(90deg, #FF0080, #7928CA) !important;
+        font-weight: bold;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    
+    .news-card .btn-primary {
+        background: linear-gradient(90deg, #7928CA, #FF0080) !important;
+        border: none !important;
+        transition: all 0.3s ease;
+    }
+    
+    .news-card .btn-primary:hover {
+        background: linear-gradient(90deg, #FF0080, #7928CA) !important;
+        transform: translateY(-2px);
+    }
+    
+    .pagination .page-item .page-link {
+        background: linear-gradient(90deg, #7928CA, #FF0080);
+        color: white;
+        border: none;
+        margin: 0 2px;
+        transition: all 0.3s ease;
+    }
+    
+    .pagination .page-item .page-link:hover {
+        background: linear-gradient(90deg, #FF0080, #7928CA);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .pagination .page-item.active .page-link {
+        background: linear-gradient(90deg, #FF0080, #7928CA);
+        font-weight: bold;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    
+    .pagination .page-item.disabled .page-link {
+        background: #444;
+        color: #aaa;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(document).ready(function() {
+    console.log('DOM cargado - jQuery activo');
+    let currentCategory = 'technology';
+    
+    function createNewsCard(article) {
+        return `
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="news-card">
+                    <img src="${article.urlToImage}" alt="${article.title}" class="news-img">
+                    <h5 class="card-title">${article.title}</h5>
+                    <p class="source mb-2">${article.source.name}</p>
+                    <p class="card-text">${article.description}</p>
+                    <a href="${article.url}" target="_blank" class="btn btn-primary btn-sm mt-2">Read more</a>
+                </div>
+            </div>
+        `;
+    }
+    
+    function displayNews(category) {
+        const $container = $('#news-container');
+        
+        $container.html('<div class="col-12 text-center"><div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div></div>');
+        
+        setTimeout(function() {
+            $container.empty();
+            
+            const articles = newsData[category];
+            if (articles && articles.length > 0) {
+                articles.forEach(function(article) {
+                    $container.append(createNewsCard(article));
+                });
+            } else {
+                $container.html('<div class="col-12 text-center"><p>No hay artículos disponibles para esta categoría.</p></div>');
+            }
+        }, 300);
+    }
+    
+    displayNews('technology');
+    
+    $('.category-filter .btn').on('click', function() {
+        const category = $(this).data('category');
+        
+        $('.category-filter .btn').removeClass('active');
+        $(this).addClass('active');
+        
+        currentCategory = category;
+        displayNews(category);
+    });
+});
+</script>

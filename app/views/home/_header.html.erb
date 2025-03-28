@@ -1,0 +1,31 @@
+<div class="content-header">
+  <header>
+    <div class="logo">
+      <%= link_to "LF", root_path %>
+    </div>
+    <nav id="clic">
+      <%= link_to "ABOUT ME", about_path, onclick: "hideMenu()" %>
+      <%= link_to "NEWS", news_path, onclick: "hideMenu()" %>
+      <%= link_to "CONTACT", contact_path, onclick: "hideMenu()" %>
+    </nav>
+    <div class="clic-responsive" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>
+  </header>
+</div>
+
+<script>
+function toggleMenu() {
+  const clic = document.getElementById("clic");
+  if (clic) {
+    clic.classList.toggle("responsive");
+  }
+}
+
+function hideMenu() {
+  const clic = document.getElementById("clic");
+  if (clic) {
+    clic.classList.remove("responsive");
+  }
+}
+</script> 

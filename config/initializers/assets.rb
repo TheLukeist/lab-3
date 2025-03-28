@@ -5,4 +5,12 @@ Rails.application.config.assets.version = "1.0"
 
 # Add additional assets to the asset load path.
 # Rails.application.config.assets.paths << Emoji.images_path
+Rails.application.config.assets.paths << Rails.root.join("node_modules")
 Rails.application.config.assets.paths << Rails.root.join("node_modules/bootstrap-icons/font")
+
+# Precompile additional assets.
+Rails.application.config.assets.precompile += %w( application.css )
+
+# Enable serving of static files from the `/public` folder by default since
+# Apache or NGINX already handles this.
+Rails.application.config.public_file_server.enabled = true

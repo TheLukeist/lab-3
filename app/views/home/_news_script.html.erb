@@ -1,0 +1,153 @@
+<script>
+let menuVisible = false;
+let lastScroll = 0;
+let scrollstop;
+let currentCategory = 'technology';
+let currentPage = 1;
+const articlesPerPage = 6;
+let newsData = [];
+
+function createArticleCard(article) {
+    const imageUrl = article.urlToImage || 'https://via.placeholder.com/300x200?text=No+Image';
+    const title = article.title || 'No title';
+    const source = article.source?.name || 'Unknown source';
+    const description = article.description || 'No description available.';
+    const url = article.url || '#';
+    
+    return `
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="news-card">
+                <img src="${imageUrl}" alt="${title}" class="news-img">
+                <h5 class="card-title">${title}</h5>
+                <p class="source mb-2">${source}</p>
+                <p class="card-text">${description}</p>
+                <a href="${url}" target="_blank" class="btn btn-primary btn-sm mt-2">Read more</a>
+            </div>
+        </div>
+    `;
+}
+
+function displayNews() {
+    console.log('Ejecutando displayNews() con', newsData.length, 'artículos');
+    const newsContainer = document.getElementById('news-container');
+    if (!newsContainer) {
+        console.error('El contenedor de noticias no existe');
+        return;
+    }
+    
+    const start = (currentPage - 1) * articlesPerPage;
+    const end = start + articlesPerPage;
+    const currentArticles = newsData.slice(start, end);
+    
+    console.log('Mostrando artículos de', start, 'a', end, 'de', newsData.length);
+    
+    newsContainer.innerHTML = '';
+    currentArticles.forEach(article => {
+        newsContainer.innerHTML += createArticleCard(article);
+    });
+
+    updatePagination();
+}
+
+function updatePagination() {
+    const paginationContainer = document.querySelector('.pagination');
+    if (!paginationContainer) {
+        console.error('El contenedor de paginación no existe');
+        return;
+    }
+    
+    const totalPages = Math.ceil(newsData.length / articlesPerPage);
+    let paginationHTML = `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="prev">Previous</a>
+        </li>
+    `;
+
+    for (let i = 1; i <= totalPages; i++) {
+        paginationHTML += `
+            <li class="page-item ${currentPage === i ? 'active' : ''}">
+                <a class="page-link" href="#" data-page="${i}">${i}</a>
+            </li>
+        `;
+    }
+
+    paginationHTML += `
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="next">Next</a>
+        </li>
+    `;
+
+    paginationContainer.innerHTML = paginationHTML;
+}
+
+function loadNews(category = 'technology') {
+    console.log('Cargando noticias para categoría:', category);
+    const newsContainer = document.getElementById('news-container');
+    if (!newsContainer) {
+        console.error('El contenedor de noticias no existe');
+        return;
+    }
+    
+    newsContainer.innerHTML = `
+        <div class="col-12 text-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    `;
+    
+    console.log('Usando datos de respaldo para:', category);
+    if (fallbackNewsData[category]) {
+        newsData = fallbackNewsData[category];
+        console.log('Datos encontrados:', newsData.length, 'artículos');
+        currentPage = 1;
+        displayNews();
+    } else {
+        console.error('No se encontraron datos para la categoría:', category);
+        newsContainer.innerHTML = `
+            <div class="col-12 text-center">
+                <p>No hay artículos disponibles para esta categoría.</p>
+            </div>
+        `;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM completamente cargado - Depuración de noticias');
+
+    loadNews(currentCategory);
+    console.log('loadNews() llamado para la categoría:', currentCategory);
+
+    document.querySelectorAll('.category-filter .btn').forEach(button => {
+        button.addEventListener('click', function() {
+            document.querySelectorAll('.category-filter .btn')
+                .forEach(btn => btn.classList.remove('active'));
+            
+            this.classList.add('active');
+            currentCategory = this.dataset.category;
+            loadNews(currentCategory);
+        });
+    });
+
+    const paginationElement = document.querySelector('.pagination');
+    if (paginationElement) {
+        paginationElement.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!e.target.classList.contains('page-link')) return;
+            
+            const page = e.target.dataset.page;
+            const totalPages = Math.ceil(newsData.length / articlesPerPage);
+            
+            if (page === 'prev' && currentPage > 1) {
+                currentPage--;
+            } else if (page === 'next' && currentPage < totalPages) {
+                currentPage++;
+            } else if (page !== 'prev' && page !== 'next') {
+                currentPage = parseInt(page);
+            }
+            
+            displayNews();
+        });
+    }
+});
+</script> 

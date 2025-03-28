@@ -1,0 +1,69 @@
+/* Estilos para las tarjetas de noticias */
+.news-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    height: 100%;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+}
+
+.news-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.news-card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1rem 1rem 0.5rem 1rem;
+    color: #fff;
+}
+
+.news-card .source {
+    font-size: 0.9rem;
+    color: #b388ff;
+    margin: 0 1rem;
+}
+
+.news-card .card-text {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin: 0.5rem 1rem;
+}
+
+.news-card .btn {
+    margin: 0.5rem 1rem 1rem 1rem;
+    background: linear-gradient(135deg, #b388ff, #EC4899);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.news-card .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(179, 136, 255, 0.4);
+}
+
+/* Estilos para los botones de categoría */
+.category-filter {
+    margin-bottom: 2rem;
+}
+
+.category-filter .btn {
+    margin: 0 0.3rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.category-filter .btn:hover,
+.category-filter .btn.active {
+    background: linear-gradient(135deg, #b388ff, #EC4899);
+} 

@@ -1,0 +1,56 @@
+/* Estilos para eliminar cualquier línea o borde no deseado */
+html, body {
+  background-color: #0a0a16 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Asegurarnos de que main ocupe toda la altura disponible */
+main {
+  min-height: 100vh !important;
+  margin: 0 !important;
+  padding-top: 70px !important;
+  padding-bottom: 0 !important;
+  border: none !important;
+  background-color: #0a0a16 !important;
+}
+
+/* Corregir el hero para que ocupe toda la altura */
+.hero {
+  min-height: calc(100vh - 70px) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background-color: #0a0a16 !important;
+}
+
+/* Eliminar cualquier contenido después del body o main */
+body::after, main::after, .hero::after, 
+body::before, main::before, .hero::before,
+html::after, html::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* Eliminar cualquier línea, borde o espacio en los elementos de Bootstrap */
+.container, .container-fluid, .row, .col, 
+.col-md-4, .col-lg-4, .card, .card-body {
+  border: none !important;
+  margin-bottom: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+/* Eliminar márgenes y bordes para cualquier elemento del DOM */
+* {
+  margin-bottom: 0 !important;
+  border-bottom: none !important;
+} 
